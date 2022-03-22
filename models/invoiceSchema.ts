@@ -1,5 +1,5 @@
 
-const invoiceSchema = (sequelize, DataTypes) =>
+const invoiceSchema = (sequelize:any, DataTypes:any) =>
 sequelize.define("nawrsq", {
   items: {
     type: DataTypes.ARRAY(DataTypes.STRING),
@@ -18,7 +18,7 @@ sequelize.define("nawrsq", {
   email:{
   type: DataTypes.STRING,
   isEmail: true, 
-
+  // allowNull:false
   }
 });
 

@@ -1,41 +1,22 @@
-import { invoiceModel } from "../models/index.mjs";
+import { invoiceModel } from "../models/index.js";
 
-
-export const addInvoice = async (req, res) => {
+// create invoice
+export const addInvoice = async (req: any, res: any): Promise<any> => {
   try {
-
     const invoice = await invoiceModel.create({
       items: req.body.items,
       notes: req.body.notes,
       status: req.body.status,
       email: req.body.email
     });
-
-//     const options={
-//       from:"kader.test@outlook.com",
-//       to:req.body.email,
-//       subject:`invoice `,
-//       text:"new invoice added"
-//     }
-//     console.log("options",options);
-//     transporter.sendMail(options,(err,info)=>{
-
-//       if(err){
-//         console.log("err",err);
-//         return;
-//       }
-//       console.log("sent" , info.response);
-// })
-
     return invoice;
   } catch (e) {
     console.log(e);
-    return "na"
+    return "cant add invoice"
   }
-
 };
-
-export const updateInvoice = async (req, res) => {
+//update status 
+export const updateInvoice = async (req: any, res: any): Promise<any> => {
   const id = parseInt(req.params.id);
   try {
     const updated = await invoiceModel.update(
@@ -50,12 +31,9 @@ export const updateInvoice = async (req, res) => {
   } catch {
     return " cant update "
   }
-
 };
-
-
-export const getAllInvoices = async (req, res) => {
-
+// get all invoices , filter invoices by status 
+export const getAllInvoices = async (req: any, res: any): Promise<any> => {
   let status = req.query.status;
   try {
     if (status) {
@@ -68,7 +46,6 @@ export const getAllInvoices = async (req, res) => {
   } catch {
     return " cant get your data"
   }
-
 };
 
 
